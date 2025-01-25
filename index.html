@@ -116,8 +116,11 @@
                 `I was just so ${getRandom(data.feelings)} about how ${getRandom(data.servicePhrases)} at the shop I visited on ${yesterdayDate}.`
             ];
 
-            // Shuffle the complaint sections randomly
-            const shuffledComplaint = complaintSections.sort(() => Math.random() - 0.5).join(" ");
+            // Shuffle the complaint sections randomly and remove leading/trailing spaces
+            const shuffledComplaint = complaintSections
+                .sort(() => Math.random() - 0.5)
+                .map(section => section.trim()) // Clean up each section to remove unwanted spaces
+                .join(" "); // Join all sections into one paragraph without additional line breaks
 
             document.getElementById("complaint").innerText = shuffledComplaint.trim();
         }
