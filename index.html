@@ -62,7 +62,11 @@
                 "kicked us out"
             ],
             payments: ["notes and coins", "cash"],
-            feelings: ["frustrated", "disappointed", "angry", "upset", "annoyed"]
+            feelings: ["frustrated", "disappointed", "angry", "upset", "annoyed"],
+            skinParts: ["chicken skin", "skin"],
+            skinWas: ["was", "was not"],
+            softSynonyms: ["soft", "flimsy", "limp", "delicate"],
+            mushySynonyms: ["mushy", "soggy", "moist", "wet"]
         };
 
         function getRandom(arr) {
@@ -79,9 +83,13 @@
         function generateComplaint() {
             const companion = getRandom(data.companions);
             const yesterdayDate = getYesterdayDate();
+            const skinDescription = `
+                The (${getRandom(data.skinParts)}) (${getRandom(data.skinWas)}) 
+                (${getRandom(data.softSynonyms)}) and (${getRandom(data.mushySynonyms)})
+            `;
             const complaint = `
-                I went to KFC with ${companion} and the chicken was soggy. The skin was not crispy; 
-                instead, I received chicken with soft, mushy skin, and it just tasted terrible. 
+                I went to KFC with ${companion} and the chicken was soggy. 
+                Instead, ${skinDescription.trim()} and it just tasted terrible. 
                 ${companion} also noticed. I ordered a ${getRandom(data.bucketMeals)}, and the chips were 
                 so ${getRandom(data.chipSynonyms.damp)} and ${getRandom(data.chipSynonyms.grainy)} I honestly could not eat them because of ${getRandom(data.chipProblems)}. 
                 The food took ${getRandom(data.waitTimes)} to get ready, and ${getRandom(data.reasons)}. 
