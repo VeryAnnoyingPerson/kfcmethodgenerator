@@ -26,6 +26,7 @@
             margin-top: 20px;
             font-size: 18px;
             line-height: 1.5;
+            white-space: pre-wrap; /* Ensures spaces and line breaks are respected */
         }
     </style>
 </head>
@@ -108,19 +109,10 @@
                 ${getRandom(data.softSynonyms)} and ${getRandom(data.mushySynonyms)}
             `;
             const complaintSections = [
-                `I went to KFC with ${companion} and the chicken was soggy. 
-                Instead, ${skinDescription.trim()} and it just tasted terrible.`,
-
-                `I ordered a ${getRandom(data.bucketMeals)}, and the chips were 
-                so ${getRandom(data.chipSynonyms.damp)} and ${getRandom(data.chipSynonyms.grainy)} I honestly could not eat them because of ${getRandom(data.chipProblems)}.`,
-
+                `I went to KFC with ${companion} and the chicken was soggy. Instead, ${skinDescription.trim()} and it just tasted terrible.`,
+                `I ordered a ${getRandom(data.bucketMeals)}, and the chips were so ${getRandom(data.chipSynonyms.damp)} and ${getRandom(data.chipSynonyms.grainy)} I honestly could not eat them because of ${getRandom(data.chipProblems)}.`,
                 `The food took ${getRandom(data.waitTimes)} to get ready, and ${getRandom(data.reasons)}.`,
-
-                `When I went to ${getRandom(data.staffActions)} because the food was ${getRandom(data.foodStates)} 
-                and I could not eat it, the staff member ${getRandom(data.staffResponses)}.`,
-
-                `Since I paid in ${getRandom(data.payments)}, I asked for a receipt, but the staff member said the receipt machine was not working.`,
-
+                `When I went to ${getRandom(data.staffActions)} because the food was ${getRandom(data.foodStates)} and I could not eat it, the staff member ${getRandom(data.staffResponses)}. Since I paid in ${getRandom(data.payments)}, I asked for a receipt, but the staff member said the receipt machine was not working.`,
                 `I was just so ${getRandom(data.feelings)} about how ${getRandom(data.servicePhrases)} at the shop I visited on ${yesterdayDate}.`
             ];
 
