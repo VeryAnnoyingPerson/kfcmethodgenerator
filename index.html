@@ -66,7 +66,13 @@
             skinParts: ["chicken skin", "skin"],
             skinWas: ["was", "was not"],
             softSynonyms: ["soft", "flimsy", "limp", "delicate"],
-            mushySynonyms: ["mushy", "soggy", "moist", "wet"]
+            mushySynonyms: ["mushy", "soggy", "moist", "wet"],
+            servicePhrases: [
+                "bad the staff treated me",
+                "bad the staff members treated me",
+                "bad the service was",
+                "bad the people were to me"
+            ]
         };
 
         function getRandom(arr) {
@@ -76,8 +82,22 @@
         function getYesterdayDate() {
             const today = new Date();
             today.setDate(today.getDate() - 1); // Go back one day
-            const options = { year: "numeric", month: "long", day: "numeric" };
-            return today.toLocaleDateString(undefined, options); // Format date
+
+            // Get day, month, and year
+            const day = today.getDate();
+            const month = today.getMonth();
+            const year = today.getFullYear();
+
+            // Format variations
+            const formats = [
+                `${day}/${month + 1}/${year}`, // 24/01/2025
+                `${day}/${month + 1}/${year.toString().slice(-2)}`, // 24/01/25
+                `${day}th ${today.toLocaleString('default', { month: 'short' })} ${year}`, // 24th Jan 2025
+                `${day}th of ${today.toLocaleString('default', { month: 'long' })} ${year}` // 24th of January 2025
+            ];
+
+            // Randomly return one of the formats
+            return formats[Math.floor(Math.random() * formats.length)];
         }
 
         function generateComplaint() {
@@ -87,19 +107,27 @@
                 The (${getRandom(data.skinParts)}) (${getRandom(data.skinWas)}) 
                 (${getRandom(data.softSynonyms)}) and (${getRandom(data.mushySynonyms)})
             `;
-            const complaint = `
-                I went to KFC with ${companion} and the chicken was soggy. 
-                Instead, ${skinDescription.trim()} and it just tasted terrible. 
-                ${companion} also noticed. I ordered a ${getRandom(data.bucketMeals)}, and the chips were 
-                so ${getRandom(data.chipSynonyms.damp)} and ${getRandom(data.chipSynonyms.grainy)} I honestly could not eat them because of ${getRandom(data.chipProblems)}. 
-                The food took ${getRandom(data.waitTimes)} to get ready, and ${getRandom(data.reasons)}. 
-                I thought I could quickly pass by to get some KFC. ${getRandom(data.plansPreDelay)}, ${getRandom(data.plansDelay)}, 
-                which was quite annoying. When I went to ${getRandom(data.staffActions)} because the food was ${getRandom(data.foodStates)} 
-                and I could not eat it, the staff member ${getRandom(data.staffResponses)}. Since I paid in ${getRandom(data.payments)}, 
-                I asked for a receipt, but the staff member said the receipt machine was not working. I was just so ${getRandom(data.feelings)} 
-                about how bad the service was at the shop I visited on ${yesterdayDate}.
-            `;
-            document.getElementById("complaint").innerText = complaint.trim();
+            const complaintSections = [
+                `I went to KFC with ${companion} and the chicken was soggy. 
+                Instead, ${skinDescription.trim()} and it just tasted terrible.`,
+
+                `I ordered a ${getRandom(data.bucketMeals)}, and the chips were 
+                so ${getRandom(data.chipSynonyms.damp)} and ${getRandom(data.chipSynonyms.grainy)} I honestly could not eat them because of ${getRandom(data.chipProblems)}.`,
+
+                `The food took ${getRandom(data.waitTimes)} to get ready, and ${getRandom(data.reasons)}.`,
+
+                `When I went to ${getRandom(data.staffActions)} because the food was ${getRandom(data.foodStates)} 
+                and I could not eat it, the staff member ${getRandom(data.staffResponses)}.`,
+
+                `Since I paid in ${getRandom(data.payments)}, I asked for a receipt, but the staff member said the receipt machine was not working.`,
+
+                `I was just so ${getRandom(data.feelings)} about how ${getRandom(data.servicePhrases)} at the shop I visited on ${yesterdayDate}.`
+            ];
+
+            // Shuffle the complaint sections randomly
+            const shuffledComplaint = complaintSections.sort(() => Math.random() - 0.5).join(" ");
+
+            document.getElementById("complaint").innerText = shuffledComplaint.trim();
         }
     </script>
 </body>
