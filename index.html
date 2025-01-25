@@ -55,7 +55,7 @@
             staffActions: ["confront the staff", "complain to the staff", "argue with the staff"],
             foodStates: ["in a bad state", "in a horrible state", "not edible"],
             staffResponses: [
-                "said there's nothing we can do about it",
+                "said there is nothing we can do about it",
                 "shouted at me",
                 "shouted at us",
                 "kicked me out",
@@ -72,7 +72,7 @@
         function getYesterdayDate() {
             const today = new Date();
             today.setDate(today.getDate() - 1); // Go back one day
-            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            const options = { year: "numeric", month: "long", day: "numeric" };
             return today.toLocaleDateString(undefined, options); // Format date
         }
 
@@ -80,15 +80,15 @@
             const companion = getRandom(data.companions);
             const yesterdayDate = getYesterdayDate();
             const complaint = `
-                I went to KFC with ${companion} and the chicken was soggy. The skin wasn’t crispy; 
+                I went to KFC with ${companion} and the chicken was soggy. The skin was not crispy; 
                 instead, I received chicken with soft, mushy skin, and it just tasted terrible. 
                 ${companion} also noticed. I ordered a ${getRandom(data.bucketMeals)}, and the chips were 
-                so ${getRandom(data.chipSynonyms.damp)} and ${getRandom(data.chipSynonyms.grainy)} I honestly couldn’t eat them because of ${getRandom(data.chipProblems)}. 
+                so ${getRandom(data.chipSynonyms.damp)} and ${getRandom(data.chipSynonyms.grainy)} I honestly could not eat them because of ${getRandom(data.chipProblems)}. 
                 The food took ${getRandom(data.waitTimes)} to get ready, and ${getRandom(data.reasons)}. 
                 I thought I could quickly pass by to get some KFC. ${getRandom(data.plansPreDelay)}, ${getRandom(data.plansDelay)}, 
                 which was quite annoying. When I went to ${getRandom(data.staffActions)} because the food was ${getRandom(data.foodStates)} 
-                and I couldn’t eat it, the staff member ${getRandom(data.staffResponses)}. Since I paid in ${getRandom(data.payments)}, 
-                I asked for a receipt, but the staff member said the receipt machine wasn’t working. I was just so ${getRandom(data.feelings)} 
+                and I could not eat it, the staff member ${getRandom(data.staffResponses)}. Since I paid in ${getRandom(data.payments)}, 
+                I asked for a receipt, but the staff member said the receipt machine was not working. I was just so ${getRandom(data.feelings)} 
                 about how bad the service was at the shop I visited on ${yesterdayDate}.
             `;
             document.getElementById("complaint").innerText = complaint.trim();
