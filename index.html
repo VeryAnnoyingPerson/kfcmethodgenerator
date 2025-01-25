@@ -69,19 +69,27 @@
             return arr[Math.floor(Math.random() * arr.length)];
         }
 
+        function getYesterdayDate() {
+            const today = new Date();
+            today.setDate(today.getDate() - 1); // Go back one day
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            return today.toLocaleDateString(undefined, options); // Format date
+        }
+
         function generateComplaint() {
             const companion = getRandom(data.companions);
+            const yesterdayDate = getYesterdayDate();
             const complaint = `
                 I went to KFC with ${companion} and the chicken was soggy. The skin wasn’t crispy; 
                 instead, I received chicken with soft, mushy skin, and it just tasted terrible. 
                 ${companion} also noticed. I ordered a ${getRandom(data.bucketMeals)}, and the chips were 
                 so ${getRandom(data.chipSynonyms.damp)} and ${getRandom(data.chipSynonyms.grainy)} I honestly couldn’t eat them because of ${getRandom(data.chipProblems)}. 
                 The food took ${getRandom(data.waitTimes)} to get ready, and ${getRandom(data.reasons)}. 
-                I thought I could quickly pass by to get some KFC; ${getRandom(data.plansPreDelay)}, ${getRandom(data.plansDelay)}, 
+                I thought I could quickly pass by to get some KFC. ${getRandom(data.plansPreDelay)}, ${getRandom(data.plansDelay)}, 
                 which was quite annoying. When I went to ${getRandom(data.staffActions)} because the food was ${getRandom(data.foodStates)} 
                 and I couldn’t eat it, the staff member ${getRandom(data.staffResponses)}. Since I paid in ${getRandom(data.payments)}, 
                 I asked for a receipt, but the staff member said the receipt machine wasn’t working. I was just so ${getRandom(data.feelings)} 
-                about how bad the service was at the shop I visited yesterday.
+                about how bad the service was at the shop I visited on ${yesterdayDate}.
             `;
             document.getElementById("complaint").innerText = complaint.trim();
         }
