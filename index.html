@@ -1,1 +1,68 @@
-a
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KFC Complaint Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #ff4d4d;
+            color: white;
+        }
+        button:hover {
+            background-color: #e63939;
+        }
+        p {
+            margin-top: 20px;
+            font-size: 18px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <h1>KFC Complaint Generator</h1>
+    <button onclick="generateComplaint()">Generate Complaint</button>
+    <p id="complaint"></p>
+
+    <script>
+        const data = {
+            companions: ["my sibling", "2 siblings", "mum", "dad"],
+            tasteNegatives: ["bland", "rancid", "terrible", "unbearable", "disgusting"],
+            bucketMeals: ["Family Bucket", "Zinger Box Meal", "Boneless Banquet", "Chicken Share Box"],
+            chipProblems: ["the smell", "the texture", "how soggy it was"],
+            waitTimes: ["20 minutes", "30 minutes", "45 minutes", "an hour", "2 hours"],
+            reasons: ["I had places to be", "I needed to get to work"],
+            staffActions: ["confront the staff", "complain to the staff", "argue with the staff"],
+            foodStates: ["in a bad state", "in a horrible state", "not edible"],
+            staffResponses: [
+                "said there's nothing we can do about it",
+                "shouted at me",
+                "shouted at us",
+                "kicked me out",
+                "kicked us out"
+            ],
+            payments: ["notes and coins", "cash"],
+            feelings: ["frustrated", "disappointed", "angry", "upset", "annoyed"]
+        };
+
+        function getRandom(arr) {
+            return arr[Math.floor(Math.random() * arr.length)];
+        }
+
+        function generateComplaint() {
+            const complaint = `I went to KFC with ${getRandom(data.companions)} and the chicken was soggy. The skin wasn’t crispy; instead, I received chicken with soft, mushy skin, and it just tasted ${getRandom(data.tasteNegatives)}. I ordered a ${getRandom(data.bucketMeals)}, and the chips were so damp and grainy I honestly couldn’t eat them because of ${getRandom(data.chipProblems)}. The food took ${getRandom(data.waitTimes)} to get ready, and ${getRandom(data.reasons)}. I thought I could quickly pass by to get some KFC; however, this long wait delayed my plans, which was quite annoying. When I went to ${getRandom(data.staffActions)} because the food was ${getRandom(data.foodStates)} and I couldn’t eat it, the staff member ${getRandom(data.staffResponses)}. Since I paid in ${getRandom(data.payments)}, I asked for a receipt, but the staff member said the receipt machine wasn’t working. I was just so ${getRandom(data.feelings)} about how bad the service was at the shop I visited yesterday.`;
+            document.getElementById("complaint").innerText = complaint;
+        }
+    </script>
+</body>
+</html>
