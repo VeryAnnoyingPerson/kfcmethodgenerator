@@ -39,9 +39,19 @@
             companions: ["my sibling", "2 siblings", "mum", "dad"],
             tasteNegatives: ["bland", "rancid", "terrible", "unbearable", "disgusting"],
             bucketMeals: ["Family Bucket", "Zinger Box Meal", "Boneless Banquet", "Chicken Share Box"],
+            chipSynonyms: {
+                damp: ["wet", "moist", "soggy", "mushy"],
+                grainy: ["gritty", "rough", "powdery", "coarse"]
+            },
             chipProblems: ["the smell", "the texture", "how soggy it was"],
             waitTimes: ["20 minutes", "30 minutes", "45 minutes", "an hour", "2 hours"],
             reasons: ["I had places to be", "I needed to get to work"],
+            plansPreDelay: ["But", "However", "Nevertheless", "Nonetheless"],
+            plansDelay: [
+                "I was late to my plan", 
+                "I had to cancel my plan because how long it took", 
+                "It took too long so I had to cancel my plan"
+            ],
             staffActions: ["confront the staff", "complain to the staff", "argue with the staff"],
             foodStates: ["in a bad state", "in a horrible state", "not edible"],
             staffResponses: [
@@ -60,8 +70,20 @@
         }
 
         function generateComplaint() {
-            const complaint = `I went to KFC with ${getRandom(data.companions)} and the chicken was soggy. The skin wasn’t crispy; instead, I received chicken with soft, mushy skin, and it just tasted ${getRandom(data.tasteNegatives)}. I ordered a ${getRandom(data.bucketMeals)}, and the chips were so damp and grainy I honestly couldn’t eat them because of ${getRandom(data.chipProblems)}. The food took ${getRandom(data.waitTimes)} to get ready, and ${getRandom(data.reasons)}. I thought I could quickly pass by to get some KFC; however, this long wait delayed my plans, which was quite annoying. When I went to ${getRandom(data.staffActions)} because the food was ${getRandom(data.foodStates)} and I couldn’t eat it, the staff member ${getRandom(data.staffResponses)}. Since I paid in ${getRandom(data.payments)}, I asked for a receipt, but the staff member said the receipt machine wasn’t working. I was just so ${getRandom(data.feelings)} about how bad the service was at the shop I visited yesterday.`;
-            document.getElementById("complaint").innerText = complaint;
+            const companion = getRandom(data.companions);
+            const complaint = `
+                I went to KFC with ${companion} and the chicken was soggy. The skin wasn’t crispy; 
+                instead, I received chicken with soft, mushy skin, and it just tasted terrible. 
+                ${companion} also noticed. I ordered a ${getRandom(data.bucketMeals)}, and the chips were 
+                so ${getRandom(data.chipSynonyms.damp)} and ${getRandom(data.chipSynonyms.grainy)} I honestly couldn’t eat them because of ${getRandom(data.chipProblems)}. 
+                The food took ${getRandom(data.waitTimes)} to get ready, and ${getRandom(data.reasons)}. 
+                I thought I could quickly pass by to get some KFC; ${getRandom(data.plansPreDelay)}, ${getRandom(data.plansDelay)}, 
+                which was quite annoying. When I went to ${getRandom(data.staffActions)} because the food was ${getRandom(data.foodStates)} 
+                and I couldn’t eat it, the staff member ${getRandom(data.staffResponses)}. Since I paid in ${getRandom(data.payments)}, 
+                I asked for a receipt, but the staff member said the receipt machine wasn’t working. I was just so ${getRandom(data.feelings)} 
+                about how bad the service was at the shop I visited yesterday.
+            `;
+            document.getElementById("complaint").innerText = complaint.trim();
         }
     </script>
 </body>
